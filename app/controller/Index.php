@@ -24,6 +24,11 @@ class Index extends BaseController {
      * @return String 登录页面
      */
     public function login() :String{
+        // 获取年份和单位名称
+        View::assign([
+            'year'      =>      date('Y', time()),
+            'org'       =>      '保障办'
+        ]);
         return View::fetch('login_view');
     }
 
