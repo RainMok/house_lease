@@ -5,6 +5,7 @@ namespace app\controller;
 use app\BaseController;
 use think\facade\View;
 use think\captcha\facade\Captcha;
+use app\business\LoginVerify;
 
 class Index extends BaseController {
 
@@ -14,7 +15,7 @@ class Index extends BaseController {
      * @return void
      */
     public function index() {
-        
+        echo "主页";
     }
 
 
@@ -40,5 +41,20 @@ class Index extends BaseController {
      */
     public function loginCode() {
         return Captcha::create();
+    }
+
+
+
+    /**
+     * 登录验证
+     */
+    public function loginAction() {
+        if ($this->request->isAjax()) {
+            // 处理符合数据类型的登录信息
+            $res = LoginVerify::verify($this->request->param());
+
+            return json($res);
+            // return json(['data' => $this->request->param()]);
+        }
     }
 } 

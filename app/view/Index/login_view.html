@@ -12,42 +12,68 @@
 </head> 
 <body> 
 
-<div class="login">
+<div class="login layui-form">
     <div class="message">房屋租赁数据管理平台-管理登录</div>
     <div id="darkbannerwrap"></div>
     
-    <form method="post" action="__CONTROLLER__/confirm">
+    <form action="" class="layui-form">
 		<input name="action" value="login" type="hidden">
-		<input name="username" placeholder="用户名" required="" type="text">
+		<div class="layui-form-item">
+			<input name="username" placeholder="用户名" required="" type="text">
+		</div>
 		<hr class="hr15">
-		<input name="password" placeholder="密码" required="" type="password">
+			<div class="layui-form-item">
+				<input name="password" placeholder="密码" required="" type="password">
+			</div>
 		<hr class="hr15">
 		<div style="position:relative;">
-		<input name="code" style="width:200px;" placeholder="验证码" required="" type="text">
+			<div class="layui-form-item">
+				<input name="code" style="width:200px;" placeholder="验证码" required="" type="text">
+			</div>	
 		<img style="width:139px;height:50px;position:absolute;right:0;top:0;border-radius:3px" src="/loginCode" onclick="this.src='/loginCode?'+Math.random()"/>
 		</div>
 		<hr class="hr15">
-		<input value="登录" style="width:100%;" type="submit">
+		<input value="登录" style="width:100%;" type="submit" lay-submit lay-filter="login">
 		<hr class="hr20">
 <!-- 		 <a onClick="alert('请联系管理员')">忘记密码</a> -->
-		<if condition="err eq 1">
+		<!-- <if condition="err eq 1">
 				<a href="#">帐号或密码错误</a>
 			<else />
 		</if>
 		<if condition="err eq 2">
 				<a href="#">验证码错误</a>
 			<else />
-		</if>
+		</if> -->
 	</form>
 
 	<!-- <font color="red"></font> -->
 </div>
 
 <div class="copyright" style="color:white;">© {$year} &nbsp;<a href="#" target="_blank" style="color:white;">{$org}</a></div>
+<script type="text/javascript" src="__LAYUI__"></script>
 <script type="text/javascript">
 	if(window != top){  
 		top.location.href=location.href;  
-	}  
+	}
+
+	layui.use(['form', 'jquery'],function(){
+		var $ = layui.$,
+			form = layui.form;
+
+		// 提交登录信息
+		form.on('submit(login)', function(data){
+			console.log(data.field);
+			$.ajax({
+				url: '/loginCheck',
+				data: data.field,
+				method: 'post'
+			}).done(function(req){
+				console.log(req);
+			});
+
+			return false;
+		})
+	})
 </script>
 </body>
 </html>

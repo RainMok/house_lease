@@ -32,6 +32,7 @@ return [
         '__PUBLIC__'    =>  '/public/static',
         '__CSS__'       =>  '/static/css',
         '__LIB__'       =>  '/static/lib',
-        '__IMAGE__'     =>  '/static/image'
+        '__IMAGE__'     =>  '/static/image',
+        '__LAYUI__'     =>  '/static/libs/layui/layui.js',
     ],
 ];

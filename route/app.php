@@ -20,3 +20,4 @@ Route::get('login', 'index/login');                 // 登录页面
 Route::get('loginCode', 'index/loginCode');         // 登录验证码路由 
 
 // post 页面请求
+Route::post('loginCheck', 'index/loginAction');
