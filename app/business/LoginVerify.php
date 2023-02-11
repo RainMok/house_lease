@@ -1,6 +1,7 @@
 <?php
 
 namespace app\business;
+use app\model\Manager;
 
 class LoginVerify {
     /**
@@ -12,6 +13,8 @@ class LoginVerify {
     public static function verify(array $inputLoginData): array {
         if (!in_array('login', $inputLoginData))
         return ['没有login'];
-        return ['有'];
+        
+        $res = Manager::where('account', $inputLoginData['username'])->find();
+        return $res->toArray();
     }
 }

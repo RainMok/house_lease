@@ -7,6 +7,9 @@ use think\facade\View;
 use think\captcha\facade\Captcha;
 use app\business\LoginVerify;
 
+
+use app\model\Manager;
+
 class Index extends BaseController {
 
     /**
@@ -16,6 +19,11 @@ class Index extends BaseController {
      */
     public function index() {
         echo "主页";
+
+        $res = Manager::find(1);
+
+
+        dump($res->toArray());
     }
 
 
